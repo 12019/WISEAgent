@@ -1,0 +1,137 @@
+#! /bin/sh
+# Copyright (c) 1999-2004 SuSE Linux AG, Nuernberg, Germany.
+# All rights reserved.
+#
+# Author: 
+#
+# /etc/init.d/sawatchdog
+#   and its symbolic link
+# /usr/local/AgentService/sawatchdog
+#
+#
+#
+### BEGIN INIT INFO
+# Provides: saagent
+# Required-Start: 
+# Required-Stop: 
+# Default-Start:  3 4 5
+# Default-Stop:   0 1 2 6
+# Short-Description: SUSIAccess Watchdog service
+# Description:    SUSIAccess Watchdog service
+### END INIT INFO
+SAAGENT_DIR="/usr/local/AgentService/"
+SAAGENT_BIN="${SAAGENT_DIR}sawatchdog"
+SAAGENT_CONF="${SAAGENT_DIR}SAWatchdog_Config"
+SAAGENT_PID="/var/run/SAWatchdog.pid"
+SAAGENT_LOG="/var/log/sawatchdog.log"
+
+# Shell functions sourced from /etc/rc.status:
+#      rc_check         check and set local and overall rc status
+#      rc_status        check and set local and overall rc status
+#      rc_status -v     ditto but be verbose in local rc status
+#      rc_status -v -r  ditto and clear the local rc status
+#      rc_status -s     display "skipped" and exit with status 3
+#      rc_status -u     display "unused" and exit with status 3
+#      rc_failed        set local and overall rc status to failed
+#      rc_failed <num>  set local and overall rc status to <num>
+#      rc_reset         clear local rc status (overall remains)
+#      rc_exit          exit appropriate to overall rc status
+#      rc_active	checks whether a service is activated by symlinks
+#      rc_splash arg    sets the boot splash screen to arg (if active)
+. /etc/rc.status
+rc_reset
+
+# Return values acc. to LSB for all commands but status:
+# 0	  - success
+# 1       - generic or unspecified error
+# 2       - invalid or excess argument(s)
+# 3       - unimplemented feature (e.g. "reload")
+# 4       - user had insufficient privileges
+# 5       - program is not installed
+# 6       - program is not configured
+# 7       - program is not running
+# 8--199  - reserved (8--99 LSB, 100--149 distrib, 150--199 appl)
+# 
+# Note that starting an already running service, stopping
+# or restarting a not-running service as well as the restart
+# with force-reload (in case signaling is not supported) are
+# considered a success.
+
+# Check for missing binary
+if [ ! -x ${SAAGENT_BIN} ]; then
+	echo -n >&2 "SUSIAccess Watchdog daemon, ${SAAGENT_BIN} is not installed. "
+	rc_status -s
+	exit 5
+fi
+
+# be extra carefull cause connection fail if TMPDIR is not writeable
+export TMPDIR="/tmp"
+
+case "$1" in
+	start)
+		echo -n "Starting SUSIAccess Watchdog daemon "
+		if [ ! -f ${SAAGENT_CONF} ]; then
+			echo -n >&2 "SUSIAccess Watchdog configuration file, ${SAAGENT_CONF} does not exist. "
+			rc_status -s
+			exit 6
+		fi
+		checkproc -p ${SAAGENT_PID} ${SAAGENT_BIN}
+		case $? in
+			0) echo -n "- Warning: daemon already running. " ;;
+			1) echo -n "- Warning: ${SAAGENT_PID} exists. " ;;
+		esac
+		test -d "${SAAGENT_PID%/SAWatchdog.pid}" || \
+			mkdir -m 0755 -p "${SAAGENT_PID%/SAWatchdog.pid}"
+		#startproc -p ${SAAGENT_PID} -l ${SAAGENT_LOG} -c ${SAAGENT_DIR} sawatchdog
+		cd ${SAAGENT_DIR}
+
+		./sawatchdog &
+		rc_status -v
+		;;
+	stop)
+		echo -n "Shutting down SUSIAccess Watchdog daemon "
+		checkproc -p ${SAAGENT_PID} ${SAAGENT_BIN} || \
+			echo -n " Warning: daemon not running. "
+		killproc -p ${SAAGENT_PID} -t 10 ${SAAGENT_BIN}
+		rc_status -v
+		;;
+	try-restart|condrestart)
+		if test "$1" = "condrestart"; then
+			echo "${attn} Use try-restart ${done}(LSB)${attn} rather than condrestart ${warn}(RH)${norm}"
+		fi
+		$0 status
+		if test $? = 0; then
+			$0 restart
+		else 
+			rc_reset
+		fi
+		rc_status
+		;;
+	restart)
+		$0 stop
+		$0 start
+		rc_status
+		;;
+	force-reload|reload)
+		echo -n "Reloading SUSIAccess Watchdog daemon "
+		checkproc -p ${SAAGENT_PID} ${SAAGENT_BIN} && \
+			touch ${SAAGENT_PID} || \
+			echo -n >&2 " Warning: daemon not running. "
+		killproc -p ${SAAGENT_PID} -HUP ${SAAGENT_BIN}
+		rc_status -v
+		;;
+	status)
+		echo -n "Checking for SUSIAccess Watchdog daemon "
+		checkproc -p ${SAAGENT_PID} ${SAAGENT_BIN}
+		rc_status -v
+		;;
+	probe)
+		test ${SAAGENT_CONF} -nt ${SAAGENT_PID} && echo reload
+		;;
+	*)
+		echo "Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload|probe}"
+		exit 1
+		;;
+esac
+rc_exit
+

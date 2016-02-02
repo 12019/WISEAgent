@@ -1,0 +1,50 @@
+############################################################
+#                 RMSAgent makefile                        #
+############################################################
+CC := gcc
+
+PROJECT_ROOT_DIR := ./
+MOSQUITTO_LIB_DIR := /usr/lib
+MOSQUITTO_INC_DIR := /usr/include
+INSTALL_OUTPUT_DIR := $(PROJECT_ROOT_DIR)build
+
+PLATFORMS_DIR := $(PROJECT_ROOT_DIR)Platform
+PLATFORM_LINUX_DIR := $(PLATFORMS_DIR)/Linux
+
+LIB_DIR := $(PROJECT_ROOT_DIR)Library
+LIB_LOG_DIR := $(LIB_DIR)/Log 
+LIB_CONN_DIR := $(LIB_DIR)/Connection
+LIB_CONFIG_DIR := $(LIB_DIR)/Configuration
+
+LIBRARIES := $(LIB_LOG_DIR) $(LIB_CONN_DIR) $(LIB_CONFIG_DIR)
+
+APP_DIR := $(PROJECT_ROOT_DIR)Application
+APP_CAGNET_DIR := $(APP_DIR)/CAgent 
+
+APPLICATIONS := $(APP_CAGNET_DIR)
+
+CLEAN_ALL := $(APPLICATIONS) $(LIBRARIES)
+
+.PHONY : all $(APPLICATIONS) $(LIBRARIES)
+all: $(APPLICATIONS)
+
+$(APPLICATIONS): $(LIBRARIES)
+	$(MAKE) --directory=$@
+
+$(LIBRARIES):
+	$(MAKE) --directory=$@
+
+.PHONY : clean
+clean:
+	for d in $(APPLICATIONS) $(LIBRARIES);	\
+	do					\
+		$(MAKE)  -C $$d clean;		\
+	done
+	rm -fr $(INSTALL_OUTPUT_DIR)
+
+.PHONY : install
+install:
+	for d in $(APPLICATIONS) $(LIBRARIES);	\
+	do					\
+		$(MAKE)  -C $$d install;	\
+	done

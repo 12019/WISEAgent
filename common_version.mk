@@ -1,0 +1,2 @@
+core_lib_SOVERSION := 3.1.0.9999
+SOVERSION := 3.1.0.9999

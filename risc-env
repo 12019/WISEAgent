@@ -1,0 +1,44 @@
+ENV_VANDER=$1
+ENV_PLAT=$2
+ENV_OS=$3
+
+ENV_LIB=$4
+
+TARGET=risc-"$ENV_VANDER"-"$ENV_PLAT"-"$ENV_OS"
+echo "TARGET=$TARGET"
+
+if [ "$TARGET" == "risc-fsl-imx6-yocto" ] ; then
+	VERSION=1.5.3
+	ENV_SCRIPT=/opt/poky/"$VERSION"/environment-setup-cortexa9hf-vfp-neon-poky-linux-gnueabi
+	ROOTFS=/opt/poky/"$VERSION"/sysroots/cortexa9hf-vfp-neon-poky-linux-gnueabi/
+elif [ "$TARGET" == "risc-intel-quark-yocto" ] ; then
+	VERSION=1.4.2
+	if [ "$ENV_LIB" == "eg" ]; then
+		echo "Use EG Library"
+		ENV_SCRIPT=/opt/clanton-full/"$VERSION"/environment-setup-i586-poky-linux
+		ROOTFS=/opt/clanton-full/"$VERSION"/sysroots/i586-poky-linux/
+	elif [ "$ENV_LIB" == "uc" ]; then
+		echo "Use UC Library"
+		ENV_SCRIPT=/opt/clanton-tiny/"$VERSION"/environment-setup-i586-poky-linux-uclibc
+		ROOTFS=/opt/clanton-tiny/"$VERSION"/sysroots/i586-poky-linux-uclibc/
+  else
+    echo "[Error] No Library"
+	fi
+elif [ "$TARGET" == "risc-intel-idp-yocto" ] ; then
+	ENV_SCRIPT=/opt/windriver/wrlinux/7.0-intel-haswell-64/environment-setup-haswell-64-wrs-linux
+	ROOTFS=/opt/windriver/wrlinux/7.0-intel-haswell-64/sysroots/haswell-64-wrs-linux/
+fi
+#========= Cross toolchain =============================================================
+source $ENV_SCRIPT
+#========== rootfs =======================================================================
+export set ROOTFS
+
+export RISC_TARGET=risc
+export CHIP_VANDER=$ENV_VANDER
+export PLATFORM=$ENV_PLAT
+export OS_VERSION=$ENV_OS
+
+echo "RISC_TARGET=risc"
+echo "CHIP_VANDER=$ENV_VANDER"
+echo "PLATFORM=$ENV_PLAT"
+echo "OS_VERSION=$ENV_OS"

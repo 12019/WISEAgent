@@ -1,0 +1,23 @@
+
+description "RMM Websockify service"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+console none
+
+pre-start script
+	ls "/usr/local/AgentService/agent_config.xml"
+end script
+
+script
+	SAAGENT_CONF="/usr/local/AgentService/agent_config.xml"
+	VNC_PORT=$(sed -n 's:.*<CustVNCPort>\(.*\)</CustVNCPort>.*:\1:p' $SAAGENT_CONF)
+	chdir "/usr/local/AgentService/VNC"			
+	exec  "/usr/local/AgentService/VNC/websockify" 6080 "localhost:${VNC_PORT}"
+end script
+
+
+
+
+

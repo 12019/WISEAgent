@@ -1,0 +1,186 @@
+REM ---------------------------------------------------------------------------------------------------------------------------------------
+CLS
+@ECHO ON
+setlocal enableextensions
+cd /d "%~dp0"
+cd ..\..
+
+REM =================================================================================================================
+SET ROOT_FOLDER=%CD%
+SET SRC_SCRIPT_ROOT=%ROOT_FOLDER%\build\Standard\script\windows
+SET SRC_AGENTCONFIG_ROOT=%ROOT_FOLDER%\build\Standard\config
+SET SRC_MODULECONFIG_ROOT=%ROOT_FOLDER%\build\Standard\config\module\win
+SET SRC_DOC_ROOT=%ROOT_FOLDER%\build\Standard\doc
+SET RELEASE_ROOT=%ROOT_FOLDER%\Release
+SET TARGET_CONFIG_ROOT=%RELEASE_ROOT%
+SET TARGET_DOC_ROOT=%RELEASE_ROOT%\doc
+SET TARGET_MODULE_ROOT=%RELEASE_ROOT%\module
+
+SET SRC_SOURCE_ROOT=%ROOT_FOLDER%\build\Standard\WISEAgent
+SET SRC_SOURCE_INCLUDE=%ROOT_FOLDER%\Include
+SET SRC_SOURCE_PLATFORM=%ROOT_FOLDER%\Platform
+SET SRC_SOURCE_SAMPLE=%ROOT_FOLDER%\Sample
+SET SRC_SOURCE_LIBRARY=%ROOT_FOLDER%\Library
+SET SRC_SOURCE_THIRDLIBRARY=%ROOT_FOLDER%\Library3rdParty
+SET TARGET_SOURCE_ROOT=%ROOT_FOLDER%\Output\WISEAgent
+SET TARGET_SOURCE_DOC=%ROOT_FOLDER%\Output\WISEAgent\Doc
+SET TARGET_SOURCE_INCLUDE=%ROOT_FOLDER%\Output\WISEAgent\Include
+SET TARGET_SOURCE_PLATFORM=%ROOT_FOLDER%\Output\WISEAgent\Platform
+SET TARGET_SOURCE_SAMPLE=%ROOT_FOLDER%\Output\WISEAgent\Sample
+SET TARGET_SOURCE_LIBRARY=%ROOT_FOLDER%\Output\WISEAgent\Library
+SET TARGET_SOURCE_THIRDLIBRARY=%ROOT_FOLDER%\Output\WISEAgent\Library3rdParty
+ECHO ==========================
+ECHO == Copy files           ==
+ECHO ==========================
+REM Remove Achieve Folder and subdirectores.
+REM RD /S/Q "%TARGET_CONFIG_ROOT%"
+
+set version=%1
+if defined version goto checkVar
+goto Var31
+:checkVar
+	for /F "tokens=1-4 delims=." %%a in ("%version%") do (
+		set MAIN_VERSION=%%a
+		set SUB_VERSIOM=%%b
+	)	
+
+	if %MAIN_VERSION%.%SUB_VERSIOM%==3.0 goto Var30
+	goto Var31
+:Var30
+	COPY /Y "%SRC_MODULECONFIG_ROOT%\module_config_30.xml" "%TARGET_MODULE_ROOT%\module_config.xml"
+		CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	goto result
+:Var31
+	COPY /Y "%SRC_MODULECONFIG_ROOT%\module_config.xml" "%TARGET_MODULE_ROOT%\module_config.xml"
+		CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+:result
+
+RD /S/Q "%TARGET_DOC_ROOT%"
+
+XCOPY /Y "%SRC_DOC_ROOT%" "%TARGET_DOC_ROOT%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+MOVE /Y "%SRC_AGENTCONFIG_ROOT%\agent_config.xml.new" "%TARGET_CONFIG_ROOT%\agent_config.xml"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+COPY /Y "%SRC_AGENTCONFIG_ROOT%\logger.ini" "%TARGET_CONFIG_ROOT%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+COPY /Y "%SRC_SCRIPT_ROOT%\NonServiceStart.bat" "%RELEASE_ROOT%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+
+ECHO ===========================
+ECHO == Source Release Folder ==
+ECHO ===========================
+
+RD /S/Q "%TARGET_SOURCE_ROOT%"
+
+XCOPY /E/Y "%SRC_SOURCE_ROOT%" "%TARGET_SOURCE_ROOT%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+RD /S/Q "%TARGET_SOURCE_DOC%"
+
+XCOPY /Y "%SRC_DOC_ROOT%" "%TARGET_SOURCE_DOC%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+RD /S/Q "%TARGET_SOURCE_SAMPLE%"
+
+XCOPY /E/Y "%SRC_SOURCE_SAMPLE%" "%TARGET_SOURCE_SAMPLE%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_INCLUDE%"
+
+XCOPY /E/Y "%SRC_SOURCE_INCLUDE%" "%TARGET_SOURCE_INCLUDE%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_PLATFORM%"
+
+XCOPY /E/Y "%SRC_SOURCE_PLATFORM%" "%TARGET_SOURCE_PLATFORM%\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\cJSON"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\cJSON" "%TARGET_SOURCE_LIBRARY%\cJSON\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\FtpHelper"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\FtpHelper" "%TARGET_SOURCE_LIBRARY%\FtpHelper\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\Log"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\Log" "%TARGET_SOURCE_LIBRARY%\Log\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\MD5"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\MD5" "%TARGET_SOURCE_LIBRARY%\MD5\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\DES"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\DES" "%TARGET_SOURCE_LIBRARY%\DES\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\Base64"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\Base64" "%TARGET_SOURCE_LIBRARY%\Base64\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\MQTTHelper"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\MQTTHelper" "%TARGET_SOURCE_LIBRARY%\MQTTHelper\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\MessageGenerator"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\MessageGenerator" "%TARGET_SOURCE_LIBRARY%\MessageGenerator\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\SAClient"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\SAClient" "%TARGET_SOURCE_LIBRARY%\SAClient\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\SAConfig"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\SAConfig" "%TARGET_SOURCE_LIBRARY%\SAConfig\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\SAGeneralHandler"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\SAGeneralHandler" "%TARGET_SOURCE_LIBRARY%\SAGeneralHandler\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\SAHandlerLoader"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\SAHandlerLoader" "%TARGET_SOURCE_LIBRARY%\SAHandlerLoader\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_LIBRARY%\SAManager"
+XCOPY /E/Y "%SRC_SOURCE_LIBRARY%\SAManager" "%TARGET_SOURCE_LIBRARY%\SAManager\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\curl-7.37.1"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\curl-7.37.1" "%TARGET_SOURCE_THIRDLIBRARY%\curl-7.37.1\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\libxml2-2.7.8"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\libxml2-2.7.8" "%TARGET_SOURCE_THIRDLIBRARY%\libxml2-2.7.8\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\libxml2-2.7.8.win32"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\libxml2-2.7.8.win32" "%TARGET_SOURCE_THIRDLIBRARY%\libxml2-2.7.8.win32\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\mosquitto-1.3.4"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\mosquitto-1.3.4" "%TARGET_SOURCE_THIRDLIBRARY%\mosquitto-1.3.4\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\openssl-1.0.1h"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\openssl-1.0.1h" "%TARGET_SOURCE_THIRDLIBRARY%\openssl-1.0.1h\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\openssl-1.0.1h.win32"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\openssl-1.0.1h.win32" "%TARGET_SOURCE_THIRDLIBRARY%\openssl-1.0.1h.win32\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\pthreads.win32"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\pthreads.win32" "%TARGET_SOURCE_THIRDLIBRARY%\pthreads.win32\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+
+RD /S/Q "%TARGET_SOURCE_THIRDLIBRARY%\log4z-3.2.0"
+XCOPY /E/Y "%SRC_SOURCE_THIRDLIBRARY%\log4z-3.2.0" "%TARGET_SOURCE_THIRDLIBRARY%\log4z-3.2.0\"
+	CALL "%~dp0Fail_Check.bat" %ERRORLEVEL%
+	
+PAUSE

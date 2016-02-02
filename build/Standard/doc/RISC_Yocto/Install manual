@@ -1,0 +1,40 @@
+RMM Agent How-To:
+
+A collection of tips and tricks for RMM Agent users
+-----------------------------------------------------------
+ * How to Install RMM Agent:
+-----------------------------------------------------------
+	1. Install SUSI 4 driver, depended by Hardware Monitor handler and SUSIControl Handler
+	2. Install SUSI IoT package, depended by SUSIControl handler
+	3. $ ./rmmagent-platform_name-version.run
+	   The Agent is installed in "/usr/local/AgentService"
+	
+-----------------------------------------------------------
+ * How to Setup RMM Agent:
+-----------------------------------------------------------
+    1. Stop Agent: sudo /etc/init.d/saagent stop
+	2. Modify config file: 
+	  $ cd /usr/local/AgentService
+	  $ sudo setup.sh
+	3. Start Agent: sudo /etc/init.d/saagent start
+	4. Agent Status check: : sudo /etc/init.d/saagent status
+	
+-----------------------------------------------------------
+ * How to Uninstall RMM Agent:
+-----------------------------------------------------------
+	1. $ cd /usr/local/AgentService
+	2. $ ./uninstall.sh
+	
+-----------------------------------------------------------
+ * How to install SUSI driver and libraries 
+-----------------------------------------------------------
+   1. Select to SUSI release folder
+   2. $ cd Driver
+   3. $ ./install.sh
+   
+  -----------------------------------------------------------
+ * How to install SUSI IoT
+ -----------------------------------------------------------
+   1. Select to SUSI IoT release folder
+   2. $ cd Library
+   3. $ ./install.sh

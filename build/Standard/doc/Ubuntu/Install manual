@@ -1,0 +1,71 @@
+RMM Agent How-To: (Linux-Ubuntu)
+
+A collection of tips and tricks for RMM Agent users
+===========================================================
+ * How to Install RMM Agent:
+===========================================================
+    1. Install SUSI4 driver depended by Hardware Monitor handler
+         You can refer to the following "How to install SUSI driver" method to operate
+    2. You must be super user first!
+        $ sudo ./rmmagent-platform_name-version.run
+       The Agent is installed in "/usr/local/AgentService"
+   
+===========================================================
+ * How to Setup RMM Agent:
+===========================================================
+    1. Stop Agent: 
+        $ sudo service saagent stop
+    2. Modify config file: 
+        $ cd /usr/local/AgentService
+        $ sudo ./setup.sh
+    3. Start Agent: 
+        $ sudo service saagent start
+    4. Agent Status check:  
+        $ sudo service saagent status
+		
+===========================================================
+ * How to check RMM Agent configuration:
+===========================================================
+    1. Cat agent config file: 
+     $ cat /usr/local/AgentService/agent_config.xml
+	
+===========================================================
+ * How to check RMM Agent connection status:
+===========================================================
+    1. Cat agent status file: 
+     $ cat /usr/local/AgentService/agent_status
+	 NOTICE:
+		0: disconnect
+		1: connected
+	
+===========================================================
+ * How to Uninstall RMM Agent:
+===========================================================
+    1. $ cd /usr/local/AgentService
+    2. $ sudo ./uninstall.sh
+
+===========================================================
+ * How to install SUSI driver:	
+===========================================================
+   1. $ apt-cache search make
+   2. $ sudo apt-get install -y make
+   3. Select to SUSI release folder
+   4. $ cd Driver
+   5. $ sudo make t=? 
+   6. $ sudo make t=? load (This for t=a or t=d only!)
+
+===========================================================
+ * How to install pre-install libraries:
+      libxml2 libx11-6 libmosquitto1
+===========================================================
+   1. $ cd /usr/local/AgentService
+   2. $ sudo ./pre-install_chk.sh
+   NOTICE:
+      Actually 'pre-install_chk.sh' is run automatically when execute 
+   'rmmagent-platform_name-version.run'. 
+      And run './pre-install_chk.sh -devel' is install the depend 
+    packages to develop RMM Agent.
+   
+   
+   
+   

@@ -1,0 +1,4 @@
+LIBRARY	"SAGatherInfo"
+	
+EXPORTS
+	sagetInfo_gatherplatforminfo

@@ -1,0 +1,28 @@
+
+description "RMM Agent service"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+console none
+
+# The default of 5 seconds is too low for saagent which needs to release Handlers
+kill timeout 10
+
+pre-start script
+	ls "/usr/local/AgentService/agent_config.xml"
+end script
+
+script
+	chdir "/usr/local/AgentService/"			
+	exec  "/usr/local/AgentService/cagent"
+end script
+
+post-stop script
+	SAAGENT_CONF="/usr/local/AgentService/agent_config.xml"
+	servername=$(sed -n 's:.*<ServiceName>\(.*\)</ServiceName>.*:\1:p' $SAAGENT_CONF)
+	SAAGENT_PIDFILE="/var/run/${servername}.pid"
+	rm -f ${SAAGENT_PIDFILE}	
+end script
+
+

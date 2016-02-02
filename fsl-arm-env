@@ -1,0 +1,32 @@
+#========= Cross toolchain =============================================================
+CROSS_TOOLCHAIN_BIN=/opt/arm/imx6/fsl-linaro-toolchain/bin
+ARCH=arm
+CROSS_COMPILE=arm-none-linux-gnueabi-
+CC=${CROSS_COMPILE}gcc
+CXX=${CROSS_COMPILE}g++
+AS=${CROSS_COMPILE}as
+AR=${CROSS_COMPILE}ar
+LD=${CROSS_COMPILE}ld
+LDD=${CROSS_COMPILE}dd
+NM=${CROSS_COMPILE}nm
+RUN=${CROSS_COMPILE}run
+SIZE=${CROSS_COMPILE}size
+RANLIB=${CROSS_COMPILE}ranlib
+STRIP=${CROSS_COMPILE}strip
+OBJCOPY=${CROSS_COMPILE}objcopy
+OBJDUMP=${CROSS_COMPILE}objdump
+READELF=${CROSS_COMPILE}readelf
+
+export set ARCH CROSS_COMPILE
+export set CC CXX AS AR LD NM RANLIB STRIP OBJCOPY OBJDUMP
+export set CFLAGS CXXFLAGS LDFLAGS LDLIBS CPPFLAGS INC LIB
+
+PATH=$QTBIN:$PATH:$CROSS_TOOLCHAIN_BIN
+export set PATH
+
+#========== rootfs =======================================================================
+ROOTFS=/opt/arm/imx6/rootfs/rootfs_signage
+export set ROOTFS
+
+#========== Extra Library & Include Path =================================================
+

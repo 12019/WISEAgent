@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<XMLConfigSettings><BaseSettings>
+<ModuleNum>13</ModuleNum>
+<ModuleName1>HDDHandler</ModuleName1><ModulePath1>\module\HDDHandler.dll</ModulePath1><ModuleEnable1>FALSE</ModuleEnable1>
+<ModuleName2>MonitoringHandler</ModuleName2><ModulePath2>\module\MonitoringHandler.dll</ModulePath2><ModuleEnable2>TRUE</ModuleEnable2>
+<ModuleName3>PowerOnOffHandler</ModuleName3><ModulePath3>\module\PowerOnOffHandler.dll</ModulePath3><ModuleEnable3>TRUE</ModuleEnable3>
+<ModuleName4>ScreenshotHandler</ModuleName4><ModulePath4>\module\ScreenshotHandler.dll</ModulePath4><ModuleEnable4>TRUE</ModuleEnable4>
+<ModuleName5>NetMonitorHandler</ModuleName5><ModulePath5>\module\NetMonitorHandler.dll</ModulePath5><ModuleEnable5>TRUE</ModuleEnable5>
+<ModuleName6>ProcessMonitorHandler</ModuleName6><ModulePath6>\module\ProcessMonitorHandler.dll</ModulePath6><ModuleEnable6>FALSE</ModuleEnable6>
+<ModuleName7>ProtectHandler</ModuleName7><ModulePath7>\module\ProtectHandler.dll</ModulePath7><ModuleEnable7>TRUE</ModuleEnable7>
+<ModuleName8>RecoveryHandler</ModuleName8><ModulePath8>\module\RecoveryHandler.dll</ModulePath8><ModuleEnable8>TRUE</ModuleEnable8>
+<ModuleName9>RemoteKVMHandler</ModuleName9><ModulePath9>\module\RemoteKVMHandler.dll</ModulePath9><ModuleEnable9>TRUE</ModuleEnable9>
+<ModuleName10>SoftwareMonitorHandler</ModuleName10><ModulePath10>\module\SoftwareMonitorHandler.dll</ModulePath10><ModuleEnable10>TRUE</ModuleEnable10>
+<ModuleName11>SUSIControlHandler</ModuleName11><ModulePath11>\module\SUSIControlHandler.dll</ModulePath11><ModuleEnable11>TRUE</ModuleEnable11>
+<ModuleName12>TerminalHandler</ModuleName12><ModulePath12>\module\TerminalHandler.dll</ModulePath12><ModuleEnable12>TRUE</ModuleEnable12>
+<ModuleName13>IoTGWHandler</ModuleName13><ModulePath13>\module\IoTSensorHandler.dll</ModulePath13><ModuleEnable13>FALSE</ModuleEnable13>
+</BaseSettings></XMLConfigSettings>

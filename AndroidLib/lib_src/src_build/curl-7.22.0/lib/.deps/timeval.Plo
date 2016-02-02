@@ -1,0 +1,181 @@
+timeval.lo: timeval.c timeval.h setup.h curl_config.h \
+ ../include/curl/curlbuild.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stddef.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stdint.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/stdint.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/_types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/machine/_types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/_wchar_limits.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/android/api-level.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/cdefs.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/cdefs_elf.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/posix_types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/stddef.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/compiler.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include-fixed/asm/posix_types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/features.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/posix_types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/posix_types_32.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/types.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/machine/kernel.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/sysmacros.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/inttypes.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/socket.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/socket.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/socket.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/socket.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/sockios.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/sockios.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/uio.h \
+ ../include/curl/curlrules.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/stdio.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stdarg.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/assert.h \
+ setup_once.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/stdlib.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/string.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/malloc.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/alloca.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/strings.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/memory.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/ctype.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/errno.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/errno.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/errno.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/errno.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/errno-base.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/stat.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/time.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/time.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/stat.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/endian.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/endian.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/machine/endian.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/time.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/siginfo.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/siginfo.h \
+ /home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stdbool.h
+
+timeval.h:
+
+setup.h:
+
+curl_config.h:
+
+../include/curl/curlbuild.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stddef.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stdint.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/stdint.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/_types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/machine/_types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/_wchar_limits.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/android/api-level.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/cdefs.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/cdefs_elf.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/posix_types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/stddef.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/compiler.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include-fixed/asm/posix_types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/features.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/posix_types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/posix_types_32.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/types.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/machine/kernel.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/sysmacros.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/inttypes.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/socket.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/socket.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/socket.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/socket.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/sockios.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/sockios.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/uio.h:
+
+../include/curl/curlrules.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/stdio.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stdarg.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/assert.h:
+
+setup_once.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/stdlib.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/string.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/malloc.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/alloca.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/strings.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/memory.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/ctype.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/errno.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/errno.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/errno.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/errno.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/errno-base.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/stat.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/time.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/time.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/linux/stat.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/endian.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/sys/endian.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/machine/endian.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/time.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm/siginfo.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/sysroot/usr/include/asm-generic/siginfo.h:
+
+/home/guolin/android/dev-env/Android19NDK48/x86-4.8/lib/gcc/i686-linux-android/4.8/include/stdbool.h:
